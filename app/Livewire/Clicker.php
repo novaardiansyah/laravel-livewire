@@ -27,12 +27,16 @@ class Clicker extends Component
   public function createNewUser()
   {
     $this->validate();
-    
+
     User::create([
       'name'     => $this->name,
       'email'    => 'a_' . rand(0, 1000) . $this->email,
       'password' => $this->password
     ]);
+
+    $this->reset(['name', 'email', 'password']);
+
+    request()->session()->flash('success', 'User created successfully.');
   }
 
   public function deleteAllUser()

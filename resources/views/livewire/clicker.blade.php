@@ -47,6 +47,8 @@
       @foreach ($users as $item)
         <p>{{ $item->email }}</p>     
       @endforeach
+
+      {{ $users->links() }}
     </div>
   </div>
 </div>

@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class Clicker extends Component
 {
+  public $name, $email, $password;
+
   public function render()
   {
     $title = 'Clicker';
@@ -17,9 +19,9 @@ class Clicker extends Component
   public function createNewUser()
   {
     User::create([
-      'name'     => 'New User',
-      'email'    => rand(1, 100) . '@gmail.com',
-      'password' => 12345
+      'name'     => $this->name,
+      'email'    => $this->email,
+      'password' => $this->password
     ]);
   }
 

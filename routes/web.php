@@ -22,13 +22,13 @@ Route::group([
   'prefix' => 'artisan',
   'as' => 'artisan.'
 ], function () {
-  Route::get('symlink', function () {
-    Artisan::call('storage:link');
-    echo 'Symlink created successfully.';
-  })->name('symlink');
+  // Route::get('symlink', function () {
+  //   Artisan::call('storage:link');
+  //   echo 'Symlink created successfully.';
+  // })->name('symlink');
 
-  Route::get('migrate', function () {
-    Artisan::call('migrate');
-    echo 'Migrate created successfully' ;
-  })->name('migrate');
+  // Route::get('migrate', function () {
+  //   Artisan::call('migrate');
+  //   echo 'Migrate created successfully' ;
+  // })->name('migrate');
 });

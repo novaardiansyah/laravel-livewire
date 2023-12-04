@@ -1,7 +1,7 @@
 <div class="container py-5">
   <div class="row">
     <div class="col-md-6">
-      <div class="card">
+      <div class="card py-3">
         <div class="card-body">
           @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -48,9 +48,21 @@
                   <img src="{{ $image->temporaryUrl() }}" class="img-fluid" alt="Preview Image" />
                 </div>
               @endif
+              
+              <div class="spinner-grow spinner-grow-sm" role="status" wire:loading wire:target="image">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             </div>
 
             <div class="text-end">
+              @for ($i = 1; $i <= 3; $i++)
+                <div class="spinner-grow spinner-grow-sm me-2" role="status" wire:loading.delay>
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              @endfor
+            </div>
+
+            <div class="text-end" wire:loading.remove>
               <button type="submit" class="btn btn-primary">Submit</button>
               <button type="button" class="btn btn-danger" wire:click="deleteAllUser">Delete All User</button>
             </div>

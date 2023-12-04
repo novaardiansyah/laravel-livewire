@@ -14,9 +14,9 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($users as $user)
+      @foreach ($this->users as $user)
         <tr>
-          <th scope="row">{{ $users->firstItem() + $loop->index }}</th>
+          <th scope="row">{{ $this->users->firstItem() + $loop->index }}</th>
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
           <td>
@@ -27,5 +27,5 @@
     </tbody>
   </table>
   
-  {{ $users->links() }}
+  {{ $this->users->links() }}
 </div>

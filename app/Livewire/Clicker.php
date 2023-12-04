@@ -5,11 +5,13 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Livewire\WithPagination;
 
 class Clicker extends Component
 {
   use WithPagination;
+  use WithFileUploads;
 
   #[Rule('required|min:2|max:50')]
   public $name;
@@ -19,6 +21,9 @@ class Clicker extends Component
 
   #[Rule('required|min:6|max:25')]
   public $password;
+
+  #[Rule('nullable|sometimes|image|max:1024')]
+  public $image;
 
   public function render()
   {
@@ -31,13 +36,18 @@ class Clicker extends Component
   {
     $validated = $this->validate();
 
+    if ($this->image) {
+      $validated['image'] = $this->image->store('uploads/profile', 'public');
+    }
+
     User::create([
       'name'     => $validated['name'],
       'email'    => 'a_' . rand(0, 1000) . $validated['email'],
-      'password' => $validated['password']
+      'password' => $validated['password'],
+      'image'    => $validated['image'] ?? null
     ]);
 
-    $this->reset(['name', 'email', 'password']);
+    $this->reset(['name', 'email', 'password', 'image']);
 
     request()->session()->flash('success', 'User created successfully.');
   }

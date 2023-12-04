@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container py-5">
   <div class="row">
-    <div class="col-md-6 mt-4">
+    <div class="col-md-6">
       <div class="card">
         <div class="card-body">
           @if (session()->has('success'))
@@ -10,10 +10,11 @@
             </div>
           @endif
 
-          <form action="" method="post" wire:submit="createNewUser">
+          <form action="" method="post" enctype="multipart/form-data" wire:submit="createNewUser">
             <div class="mb-3">
               <label for="name" class="form-label">Fullname</label>
               <input type="text" class="form-control" id="name" name="name" wire:model="name" />
+              <div id="email" class="form-text">We'll never share your data with anyone else.</div>
               @error('name')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
               @enderror
@@ -22,7 +23,6 @@
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
               <input type="email" class="form-control" id="email" name="email" wire:model="email" />
-              <div id="email" class="form-text">We'll never share your email with anyone else.</div>
               @error('email')
                 <div class="invalid-feedback d-block">{{ $message }}</div>
               @enderror
@@ -36,8 +36,24 @@
               @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-danger" wire:click="deleteAllUser">Delete All User</button>
+            <div class="mb-3">
+              <label for="image" class="form-label">Profile Picture</label>
+              <input type="file" class="form-control" id="image" name="image" wire:model="image" accept="image/png, image/jpg, image/jpeg" wire:model="image" />
+              @error('image')
+                <div class="invalid-feedback d-block">{{ $message }}</div>
+              @enderror
+
+              @if ($image)
+                <div class="col-md-12 mt-3">
+                  <img src="{{ $image->temporaryUrl() }}" class="img-fluid" alt="Preview Image" />
+                </div>
+              @endif
+            </div>
+
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-danger" wire:click="deleteAllUser">Delete All User</button>
+            </div>
           </form>
         </div>
       </div>

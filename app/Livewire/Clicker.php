@@ -28,20 +28,18 @@ class Clicker extends Component
   public function render()
   {
     $title = 'Clicker';
-    $users = User::paginate(3);
-    return view('livewire.clicker', compact('title', 'users'));
+    return view('livewire.clicker', compact('title'));
   }
 
   public function createNewUser()
   {
-    sleep(2);
     $validated = $this->validate();
 
     if ($this->image) {
       $validated['image'] = $this->image->store('uploads/profile', 'public');
     }
 
-    User::create([
+    $user = User::create([
       'name'     => $validated['name'],
       'email'    => 'a_' . rand(0, 1000) . $validated['email'],
       'password' => $validated['password'],
@@ -51,6 +49,8 @@ class Clicker extends Component
     $this->reset(['name', 'email', 'password', 'image']);
 
     request()->session()->flash('success', 'User created successfully.');
+
+    $this->dispatch('createNewUser', $user);
   }
 
   public function deleteAllUser()

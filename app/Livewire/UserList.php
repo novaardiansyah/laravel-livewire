@@ -11,7 +11,12 @@ class UserList extends Component
 {
   use WithPagination;
   public $paginate = 10;
-  public $search = '';
+  public $search;
+
+  public function mount($search)
+  {
+    $this->search = $search;
+  }
 
   #[On('createNewUser')]
   public function updateList($user = null)

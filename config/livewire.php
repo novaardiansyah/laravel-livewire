@@ -38,7 +38,7 @@ return [
     |
     */
 
-  'layout' => 'components.layouts.app',
+  'layout' => 'layouts.app',
 
   /*
     |---------------------------------------------------------------------------
@@ -155,5 +155,5 @@ return [
     |
     */
 
-  'pagination_theme' => 'bootstrap'
+  'pagination_theme' => 'bootstrap',
 ];

@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\HomePage;
+use App\Livewire\UserPage;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
+Route::get('/', HomePage::class)->name('home');
+Route::get('/users/{user}', UserPage::class)->name('users');
 
 Route::group([
   'prefix' => 'artisan',

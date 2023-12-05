@@ -10,11 +10,11 @@
     <div class="container py-5">
       <div class="row">
         <div class="col-md-8">
-          <livewire:user-list lazy="true" search="" />
+          <livewire:home-page />
         </div>
         
         <div class="col-md">
-          <livewire:clicker />
+          <livewire:user-page />
         </div>
       </div>
     </div>

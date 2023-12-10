@@ -20,6 +20,7 @@ class UserList extends Component
   public function mount($search = '')
   {
     $this->search = $search;
+    if (request()->has('s')) $this->search = request()->get('s');
   }
 
   #[On('createNewUser')]
@@ -47,6 +48,6 @@ class UserList extends Component
   
   public function render()
   {
-    return view('livewire.user-list', []);
+    return view('livewire.user-list');
   }
 }

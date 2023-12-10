@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,9 +13,11 @@ class UserList extends Component
 {
   use WithPagination;
   public $paginate = 10;
+
+  #[Url(as: 's', history: true, keep: true)]
   public $search;
 
-  public function mount($search)
+  public function mount($search = '')
   {
     $this->search = $search;
   }

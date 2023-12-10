@@ -1,7 +1,9 @@
 <div>
-  <div class="input-group mb-3">
-    <input type="text" wire:model.live.debounce.350ms="search" class="form-control" name="search" placeholder="Search.." />
-    <span class="input-group-text" wire:click="update" style="cursor: pointer;">Search</span>
+  <div class="col-md-6">
+    <div class="input-group mb-3">
+      <input type="text" wire:model.live.debounce.350ms="search" class="form-control" name="search" placeholder="Search.." />
+      <span class="input-group-text" wire:click="update" style="cursor: pointer;">Search</span>
+    </div>
   </div>
 
   <table class="table" wire:poll.keep-alive.10s>
